@@ -2,9 +2,9 @@
 
 import { useState } from "react"
 import { ChevronDown, Search, Globe, Menu, X } from "lucide-react"
-import CategoriesSlider from "./slider"
+import CategoriesSlider from "./Slider"
 import Component from "./List"
-import HowItWork from "./howItWork"
+import HowItWork from "./HowItWork"
 import Count from "./Count"
 import Price from "./Price"
 import Footer from "./Footer"
