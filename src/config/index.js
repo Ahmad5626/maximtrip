@@ -38,9 +38,15 @@ export const signInFormControls = [
   },
 ];
 
-export const initialSignInFormData = {
-  userEmail: "",
-  password: "",
+export const initialEnquiryFormData = {
+  fullName: "",
+  email: "",
+  mobile: "",
+  distination: "",
+  members: "",
+  packageName: "",
+  date: "",
+  
 };
 
 export const initialSignUpFormData = {

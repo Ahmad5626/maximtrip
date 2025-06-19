@@ -107,3 +107,7 @@ body{
 .animate-underline {
   animation: underline 1.5s ease-out 1s both;
 }
+.leading-relaxed a{
+  color: #1b9bfc;
+  text-decoration: underline;
+}
