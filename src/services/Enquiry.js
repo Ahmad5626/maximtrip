@@ -1,4 +1,4 @@
-import { baseUrl } from "utils/constant";
+import { baseUrl } from "@/utils/constant";
 
   
  export async function createEnquiry(formData) {

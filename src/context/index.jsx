@@ -5,7 +5,7 @@ import { createEnquiry, } from "@/services/Enquiry";
 import { getPage } from "@/services/Page";
 import { createContext, useEffect, useState } from "react";
 import { toast } from "sonner";
-import { baseUrl } from "utils/constant";
+import { baseUrl } from "@/utils/constant";
 
 export const AuthContext = createContext(null);
 

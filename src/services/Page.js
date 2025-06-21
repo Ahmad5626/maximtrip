@@ -1,4 +1,4 @@
-import { baseUrl } from "utils/constant";
+import { baseUrl } from "@/utils/constant";
 export const getPage = async () => {
     try {
         const data = await fetch(`${baseUrl}/v1/api/get-page`);
