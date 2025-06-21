@@ -5,6 +5,7 @@ import { createEnquiry, } from "@/services/Enquiry";
 import { getPage } from "@/services/Page";
 import { createContext, useEffect, useState } from "react";
 import { toast } from "sonner";
+import { baseUrl } from "utils/constant";
 
 export const AuthContext = createContext(null);
 
@@ -16,7 +17,6 @@ export default function AuthProvider({ children }) {
   const [categoryData, setCategoryData] = useState([])
   const [popupHeadline, setPopupHeadline] = useState("")
   const [isPopupOpen, setIsPopupOpen,] = useState(false)
-  const baseAPI = "http://localhost:7000";
  
   const HandleSubmitEnquiry = async (e) => {
     e.preventDefault();
@@ -38,7 +38,7 @@ export default function AuthProvider({ children }) {
 
 
   const getCategoryData = async () => {
-    const data = await fetch(`${baseAPI}/v1/api/get-category`)
+    const data = await fetch(`${baseUrl}/v1/api/get-category`)
     if (data) {
       const res = await data.json()
       setCategoryData(res.data)
@@ -48,7 +48,7 @@ export default function AuthProvider({ children }) {
 
 
   const getPackegesData = async () => {
-    const data = await fetch(`${baseAPI}/v1/api/get-packeges`)
+    const data = await fetch(`${baseUrl}/v1/api/get-packeges`)
     if (data) {
       const res = await data.json()
       setPackegesData(res.data)

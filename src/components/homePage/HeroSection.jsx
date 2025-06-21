@@ -11,6 +11,7 @@ import "swiper/css/pagination"
 import "swiper/css/effect-fade"
 import { useContext } from "react"
 import { AuthContext } from "@/context"
+import { Link } from "react-router-dom"
 
 export default function HeroSection() {
   const {HandleSubmitEnquiry,isPopupOpen,setIsPopupOpen,setPopupHeadline,popupHeadline}=useContext(AuthContext)
@@ -271,8 +272,10 @@ export default function HeroSection() {
         onMouseEnter={(e) => (e.target.style.backgroundColor = "#b83334")}
         onMouseLeave={(e) => (e.target.style.backgroundColor = "#ce3c3d")}
       >
-        <MessageCircle className="w-6 h-6" />
+        <Link to="https://wa.me/919797996250"> 
+          <MessageCircle className="w-6 h-6" />
         <span className="sr-only">Chat With Us</span>
+        </Link>
       </button>
 
       <style jsx>{`

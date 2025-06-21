@@ -1,9 +1,10 @@
-  const baseAPI = "http://localhost:7000";
+import { baseUrl } from "utils/constant";
+
   
  export async function createEnquiry(formData) {
     
  try {
-     const data = await fetch(`${baseAPI}/v1/api/create-enquiry`, {
+     const data = await fetch(`${baseUrl}/v1/api/create-enquiry`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
