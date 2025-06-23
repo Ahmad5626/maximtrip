@@ -17,6 +17,7 @@ export default function AuthProvider({ children }) {
   const [categoryData, setCategoryData] = useState([])
   const [popupHeadline, setPopupHeadline] = useState("")
   const [isPopupOpen, setIsPopupOpen,] = useState(false)
+  const [isPopupOpen2, setIsPopupOpen2,] = useState(false)
  
   const HandleSubmitEnquiry = async (e) => {
     e.preventDefault();
@@ -30,6 +31,7 @@ export default function AuthProvider({ children }) {
       toast.success("Enquiry submitted successfully");
       e.target.reset();
       setIsPopupOpen(false)
+      setIsPopupOpen2(false)
     } catch (error) {
       console.log(error);
       toast.error(error.message);
@@ -103,6 +105,8 @@ export default function AuthProvider({ children }) {
     blogData,
     isPopupOpen,
     setIsPopupOpen,
+    isPopupOpen2,
+    setIsPopupOpen2,
     popupHeadline,
     setPopupHeadline,
     pageData,

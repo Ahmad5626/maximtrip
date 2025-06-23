@@ -14,14 +14,14 @@ import { AuthContext } from "@/context"
 import { Link } from "react-router-dom"
 
 export default function HeroSection() {
-  const {HandleSubmitEnquiry,isPopupOpen,setIsPopupOpen,setPopupHeadline,popupHeadline}=useContext(AuthContext)
+  const {HandleSubmitEnquiry,isPopupOpen2,setIsPopupOpen2,setPopupHeadline,popupHeadline}=useContext(AuthContext)
 
   const openPopup = (headline) => {
-  setIsPopupOpen(true)
+  setIsPopupOpen2(true)
   setPopupHeadline(headline)
  }
   const closePopup = () => {
-    setIsPopupOpen(false)
+    setIsPopupOpen2(false)
     setPopupHeadline("")
   }
 
@@ -93,7 +93,7 @@ export default function HeroSection() {
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
-            <div className="relative h-full">
+            <div className="relative h-[90%]">
               {/* Background Image */}
               <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -106,7 +106,7 @@ export default function HeroSection() {
               </div>
 
               {/* Content */}
-              <div className="relative z-10 h-[70vh] flex items-end justify-center">
+              <div className="relative z-10 h-[85vh] flex items-end justify-center">
                 <div className="text-center text-white px-4 max-w-4xl mx-auto">
                   <h1 className="text-4xl md:text-6xl lg:text-4xl font-bold mb-4 leading-tight animate-fade-in">
                     {slide.title}
@@ -119,10 +119,9 @@ export default function HeroSection() {
                     <span className="text-lg md:text-xl line-through text-gray-300">{slide.originalPrice}</span>
                   </div>
                   <button
-                    className="bg-[#ce3c3d] hover:bg-orange-600 text-white font-bold py-3 px-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-delay-3"
-                    style={{ backgroundColor: "#ce3c3d" }}
-                    onMouseEnter={(e) => (e.target.style.backgroundColor = "#b83334")}
-                    onMouseLeave={(e) => (e.target.style.backgroundColor = "#ce3c3d")}
+                    className="bg-[#ce3c3d] hover:bg-white text-white hover:text-[#ce3c3d] font-bold py-3 px-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-delay-3"
+                    
+                    
                     onClick={() => openPopup(slide.title)}
                   >
                     CONNECT WITH AN EXPERT
@@ -135,9 +134,9 @@ export default function HeroSection() {
       </Swiper>
 
        {/* Popup Modal */}
-      {isPopupOpen && (
+      {isPopupOpen2 && (
         <div className="fixed top-0 left-0 right-0 bottom-0 bg-[rgba(0,0,0,0.5)]  flex items-center justify-center p-2 z-50">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-xl mx-auto relative animate-in fade-in duration-200">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-xl mx-auto relative animate-in fade-in duration-200 px-14 py-4">
             {/* Close button */}
             <button
               onClick={closePopup}
@@ -153,77 +152,71 @@ export default function HeroSection() {
               <form  className="space-y-4" onSubmit={HandleSubmitEnquiry}>
               <input type="hidden" name="packageName" value="Home Page Enquiry" />
                 {/* Full Name */}
-                <div>
-                  <input
-                    type="text"
-                    name="fullName"
-                    placeholder="Full Name"
-                   
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ce3c3d] focus:border-transparent"
-                    required
-                  />
-                </div>
+                 <div>
+                      <input
+                        type="text"
+                        placeholder="Destination"
+                        name="distination"
+                        
+                        
+                        className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-700"
+                      />
+                    </div>
 
-                {/* Email */}
-                <div>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ce3c3d] focus:border-transparent"
-                    required
-                  />
-                </div>
+              <div>
+                      <input
+                        type="date"
+                        name="date"
+                        placeholder="Date"
+                        
+                        className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-700"
+                      />
+                    </div>
 
-                {/* Mobile Number */}
-                <div>
-                  <input
-                    type="tel"
-                    name="mobile"
-                    placeholder="Enter Mobile no."
-                    
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ce3c3d] focus:border-transparent"
-                    required
-                  />
-                </div>
+                    <div>
+                      <select
+                        name="members"
+                        
+                        className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-700 appearance-none bg-white"
+                      >
+                      <option value="Select Travellers">Select Travellers</option>
+                        <option value="1 Travellers">1 Travellers</option>
+                        <option value="2 Travellers">2 Travellers</option>
+                        <option value="3 Travellers">3 Travellers</option>
+                        <option value="4 Travellers">4 Travellers</option>
+                        <option value="5+ Travellers">5+ Travellers</option>
+                      </select>
+                    </div>
 
-                {/* Travel Date and Travellers Row */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <input
-                      type="date"
-                      name="date"
-                      placeholder="Travel Date"
-                      
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ce3c3d] focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <select
-                      name="members"
-                      
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ce3c3d] focus:border-transparent bg-white"
-                    >
-                      <option value="1 Travellers">1 Travellers</option>
-                      <option value="2 Travellers">2 Travellers</option>
-                      <option value="3 Travellers">3 Travellers</option>
-                      <option value="4 Travellers">4 Travellers</option>
-                      <option value="5+ Travellers">5+ Travellers</option>
-                    </select>
-                  </div>
-                </div>
+                    <div>
+                      <input
+                        type="text"
+                        name="fullName"
+                        placeholder="Full Name"
+                       
+                        className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-700"
+                      />
+                    </div>
 
-                {/* Message */}
-                <div>
-                  <textarea
-                    name="message"
-                    placeholder="Message..."
-                   
-                    rows={4}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ce3c3d] focus:border-transparent resize-none"
-                  />
-                </div>
+                    <div>
+                      <input
+                        type="tel"
+                        name="mobile"
+                        placeholder="Enter Mobile no."
+                       
+                        className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-700"
+                      />
+                    </div>
+
+                    <div>
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="Email Address"
+                       
+                        className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-700"
+                      />
+                    </div>
 
                 {/* Submit Button */}
                 <button

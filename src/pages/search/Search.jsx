@@ -185,7 +185,7 @@ Choose from serene backwaters, lush green landscapes, houseboat stays, and cultu
           {/* Package Listings */}
           <div className="flex-1">
             <div className="space-y-6">
-              {packegesData.filter((pkg) => pkg.category.toLowerCase()  === initialQuery).map((pkg) => (
+              {packegesData.filter((pkg) => pkg.category  === initialQuery).map((pkg) => (
                 <div key={pkg.id} className="bg-white rounded-lg shadow-sm overflow-hidden">
                   <div className="flex flex-col md:flex-row">
                     {/* Package Image */}
