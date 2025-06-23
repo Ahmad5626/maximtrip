@@ -1,1 +1,1 @@
-export const baseUrl = "api.maximtrip.com"
+export const baseUrl = "https://api.maximtrip.com"
