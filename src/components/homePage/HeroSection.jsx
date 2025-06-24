@@ -2,7 +2,7 @@
 
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules"
-import { MessageCircle, Send, X } from "lucide-react"
+import { MessageCircle, Phone, Send, X } from "lucide-react"
 
 // Import Swiper styles
 import "swiper/css"
@@ -65,7 +65,8 @@ export default function HeroSection() {
   ]
 
   return (
-    <div className="relative h-screen overflow-hidden">
+   <>
+     <div className="relative h-screen overflow-hidden">
       <Swiper
         modules={[Navigation, Pagination, Autoplay, EffectFade]}
         spaceBetween={0}
@@ -106,8 +107,8 @@ export default function HeroSection() {
               </div>
 
               {/* Content */}
-              <div className="relative z-10 h-[85vh] flex items-end justify-center">
-                <div className="text-center text-white px-4 max-w-4xl mx-auto">
+              <div className="relative z-10 h-[90vh] md:h-[85vh] flex items-end justify-center">
+                <div className="md:text-center text-white px-4 md:max-w-4xl mx-auto">
                   <h1 className="text-4xl md:text-6xl lg:text-4xl font-bold mb-4 leading-tight animate-fade-in">
                     {slide.title}
                   </h1>
@@ -119,7 +120,7 @@ export default function HeroSection() {
                     <span className="text-lg md:text-xl line-through text-gray-300">{slide.originalPrice}</span>
                   </div>
                   <button
-                    className="bg-[#ce3c3d] hover:bg-white text-white hover:text-[#ce3c3d] font-bold py-3 px-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-delay-3"
+                    className="hidden md:inline bg-[#ce3c3d] hover:bg-white text-white hover:text-[#ce3c3d] font-bold py-3 px-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-delay-3"
                     
                     
                     onClick={() => openPopup(slide.title)}
@@ -136,7 +137,7 @@ export default function HeroSection() {
        {/* Popup Modal */}
       {isPopupOpen2 && (
         <div className="fixed top-0 left-0 right-0 bottom-0 bg-[rgba(0,0,0,0.5)]  flex items-center justify-center p-2 z-50">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-xl mx-auto relative animate-in fade-in duration-200 px-14 py-4">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-xl mx-auto relative animate-in fade-in duration-200 md:px-14 px-8 py-4">
             {/* Close button */}
             <button
               onClick={closePopup}
@@ -260,7 +261,7 @@ export default function HeroSection() {
 
       {/* Chat Button */}
       <button
-        className="fixed bottom-6 right-6 z-30 text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 animate-bounce-slow"
+        className="hidden md:block fixed bottom-6 right-6 z-30 text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 animate-bounce-slow"
         style={{ backgroundColor: "#ce3c3d" }}
         onMouseEnter={(e) => (e.target.style.backgroundColor = "#b83334")}
         onMouseLeave={(e) => (e.target.style.backgroundColor = "#ce3c3d")}
@@ -333,5 +334,21 @@ export default function HeroSection() {
         }
       `}</style>
     </div>
+    <div className="md:hidden fixed bottom-0 left-1/2 transform -translate-x-1/2 z-20 w-full flex justify-around h-[40px] bg-white py-1 shadow-md ">
+      <div className="call-now text-[#ce3c3d] flex items-center gap-2 text-[12px] border border-[#ce3c3d] py-2 px-4 rounded-bl-xl">
+      <Phone className="w-3 h-3" />
+      <a href="tel:+919797996250">Call Us</a>
+      </div>
+      <div className="call-now text-[white] bg-[#ce3c3d] flex items-center gap-2 text-[10px] border border-[#ce3c3d] py-2 px-4 "  onClick={() => openPopup()}>
+      <Phone className="w-3 h-3" />
+        Connect with export
+      </div>
+
+      <div className="call-now text-[#ce3c3d] flex items-center gap-2 text-[12px] border border-[#ce3c3d] py-2 px-4 rounded-br-xl">
+      <Phone className="w-3 h-3" />
+      <a href="https://wa.me/919797996250">Chat With Us</a>
+      </div>
+    </div>
+   </>
   )
 }

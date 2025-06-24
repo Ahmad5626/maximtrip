@@ -81,23 +81,23 @@ export default function Navbar() {
   }, [])
 
   return (
-    <nav className="bg-white shadow-sm px-4 py-8 md:py-3 sticky top-0 z-40 ">
+    <nav className="bg-white shadow-sm px-4 py-1 md:py-3 sticky top-0 z-40 ">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center">
           <Link to="/">
-            <img src="/imgs/maximtrip-logo.png" alt="Logo" className="w-50 " />
+            <img src="/imgs/maximtrip-logo.png" alt="Logo" className="w-30 md:w-50 " />
           </Link>
         </div>
 
         {/* Search Bar */}
-        <div className="hidden md:flex items-center flex-1 max-w-md mx-8 relative">
+        <div className=" md:flex items-center flex-1 max-w-md mx-8 relative ">
           <form className="relative w-full" onSubmit={handleSearch}>
             <Search
-              className={`${hidden && "hidden"} absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 z-20`}
+              className={`${hidden && "hidden"} absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 md:h-5 z-20`}
             />
             <div
-              className={`${hidden && "hidden"} absolute left-10 top-1/2 transform -translate-y-1/2 text-gray-400 z-20 pointer-events-none`}
+              className={`${hidden && "hidden"}  absolute left-10 top-1/2 transform -translate-y-1/2 text-gray-400 z-20 pointer-events-none  w-[130px] md:w-auto h-7 md:h-auto overflow-hidden `}
             >
               <TypeAnimation
                 sequence={[
@@ -121,7 +121,7 @@ export default function Navbar() {
               placeholder=""
               value={searchQuery}
               onChange={handleInputChange}
-              className="w-full pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none z-10 absolute -top-5 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-[180px] md:w-full pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none z-10 absolute -top-5 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               onFocus={handleFocus}
               onBlur={handleBlur}
               ref={inputRef}
@@ -167,7 +167,7 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Search */}
-      <div className="md:hidden mt-3">
+      {/* <div className="md:hidden mt-3">
         <div className="relative w-full my-10">
           <Search
             className={`${hidden && "hidden"} absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 z-20`}
@@ -202,7 +202,7 @@ export default function Navbar() {
             onBlur={handleBlur}
           />
 
-          {/* Mobile Dropdown Results */}
+        
           {showDropdown && filteredResults.length > 0 && (
             <div className="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-lg shadow-lg mt-1 max-h-80 overflow-y-auto z-50">
               {filteredResults.map((pkg, index) => (
@@ -220,7 +220,7 @@ export default function Navbar() {
             </div>
           )}
         </div>
-      </div>
+      </div> */}
     </nav>
   )
 }

@@ -59,7 +59,7 @@ export default function Footer() {
           </div>
 
           {/* Back to Flight Button */}
-          <div>
+          {/* <div>
             <button
               className="flex items-center space-x-2 bg-[#ce3c3d] hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
               style={{ backgroundColor: "#ce3c3d" }}
@@ -69,11 +69,11 @@ export default function Footer() {
               <Star className="w-4 h-4 fill-current" />
               <span>Back To Flight</span>
             </button>
-          </div>
+          </div> */}
         </div>
 
         {/* Mobile Responsive Adjustments */}
-        <div className="md:hidden mt-4 pt-4 border-t border-gray-200">
+        {/* <div className="md:hidden mt-4 pt-4 border-t border-gray-200">
           <div className="text-center space-y-3">
             <div className="flex justify-center space-x-3">
               {socialLinks.map((social) => (
@@ -88,7 +88,7 @@ export default function Footer() {
               ))}
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </footer>
   )

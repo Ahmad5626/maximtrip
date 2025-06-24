@@ -11,6 +11,7 @@ import { use, useContext } from "react"
 import { AuthContext } from "@/context"
 import { Link } from "react-router-dom"
 import Navbar from "@/components/navbar/Navbar"
+import Footer from "@/footer/Footer"
 
 export default function Allblog() {
   const {blogData}=useContext(AuthContext)
@@ -88,6 +89,7 @@ export default function Allblog() {
       
       </div>
     </section>
+    <Footer/>
     </>
   )
 }
