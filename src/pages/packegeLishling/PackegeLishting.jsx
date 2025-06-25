@@ -32,7 +32,7 @@ export default function PackagesListing() {
     setPopupHeadline,
     popupHeadline,
   } = useContext(AuthContext)
-  const [priceRange, setPriceRange] = useState([2200, 25799])
+  const [priceRange, setPriceRange] = useState([100, 25799])
   const [selectedDurations, setSelectedDurations] = useState([])
   const [selectedStars, setSelectedStars] = useState([])
   const [selectedRoutes, setSelectedRoutes] = useState([])
@@ -42,7 +42,7 @@ export default function PackagesListing() {
   const [expandedAmenities, setExpandedAmenities] = useState({})
   const [expandedFAQ, setExpandedFAQ] = useState({})
   const { id } = useParams()
-const [activeTabs, setActiveTabs] = useState({});
+  const [activeTabs, setActiveTabs] = useState({})
 
   const durations = [
     { label: "More 4 Nights 5 Days", count: 1 },
@@ -71,45 +71,9 @@ const [activeTabs, setActiveTabs] = useState({});
     { label: "Kashmir", count: 4 },
   ]
 
-  const amenityData = {
-    highlight:
-      "Experience the best attractions and scenic beauty of the destination with our carefully curated highlights.",
-    meals:
-      "Enjoy delicious local cuisine and international dishes with our comprehensive meal packages including breakfast, lunch, and dinner.",
-    transfer:
-      "Comfortable and safe transportation throughout your journey with experienced drivers and well-maintained vehicles.",
-    hotel:
-      "Stay in carefully selected hotels that offer comfort, cleanliness, and excellent service to make your trip memorable.",
-    sightseeing: "Explore famous landmarks, cultural sites, and natural wonders with our guided sightseeing tours.",
-  }
 
-  const faqData = [
-    {
-      id: 1,
-      question: "What is the best time to book Kashmir honeymoon package?",
-      answer:
-        "Winter: For snow lover couples, winter is the best time for a Kashmir couple tour. The winter begins from November till March when Kashmir receives heavy snowfall and gives a fascinating look. You can enjoy snowfall and ice skating with your better half. Summer: summer is the perfect time to enjoy your honeymoon in Kashmir. It brings new life to Kashmir with gardens, refreshing lakes, melting snow, and pleasant weather. From April to August, there is a peak tourist season in Kashmir and you can also enjoy outdoor activities such as Shikara rides, Trekking, golfing and camping.",
-    },
-    {
-      id: 2,
-      question: "What is the cost of Kashmir honeymoon tour?",
-      answer:
-        "The price varies on the number of days, types of services and activities. The average cost starts from Rs. 10000 to Rs. 20000.",
-    },
-    {
-      id: 3,
-      question: "Is Kashmir best for honeymoon?",
-      answer:
-        "Yes, Kashmir is a best honeymoon destination where you can spend some lovely moments with your partner. Amidst lush green valleys, snow clad mountains, you can enjoy some quality time and create lifelong memories.",
-    },
-    {
-      id: 4,
-      question: "How many days are sufficient for a Kashmir couple trip?",
-      answer:
-        "A package of 5 nights 6 days is enough for a Kashmir honeymoon tour. During this time, you can explore popular attractions along with enjoying some outdoor activities.",
-    },
-  ]
 
+ 
   const renderStars = (count) => {
     return Array(5)
       .fill(0)
@@ -174,6 +138,41 @@ const [activeTabs, setActiveTabs] = useState({});
     setPopupHeadline("")
   }
 
+  // Filter packages based on selected filters
+  const filteredPackages = packegesData
+    .filter((pkg) => pkg.packageCategory === selectedCategories.categoryName)
+    .filter((pkg) => {
+      // Price range filter
+      if (pkg.bestPrice < priceRange[0] || pkg.bestPrice > priceRange[1]) {
+        return false
+      }
+      
+      // Duration filter
+      if (selectedDurations.length > 0) {
+        const matchesDuration = selectedDurations.some(duration => 
+          pkg.days && pkg.days.includes(duration.split(" ")[1])
+        )
+        if (!matchesDuration) return false
+      }
+      
+      // Star rating filter
+      if (selectedStars.length > 0) {
+        if (!selectedStars.includes(Number(pkg.rating))) return false
+      }
+      
+      // Route filter
+      if (selectedRoutes.length > 0) {
+        if (!selectedRoutes.includes(pkg.cityRoute)) return false
+      }
+      
+      // Location filter
+      if (selectedLocations.length > 0) {
+        if (!selectedLocations.includes(pkg.location)) return false
+      }
+      
+      return true
+    })
+
   return (
     <>
       {/* <ScrolltoTop /> */}
@@ -199,7 +198,7 @@ const [activeTabs, setActiveTabs] = useState({});
                   <h1 className="text-2xl md:text-3xl font-bold text-gray-800">
                     {selectedCategories.headline}
                     <span className="ml-2 text-sm font-normal text-[#ce3c3d]">
-                      {packegesData.filter((pkg) => pkg.category === selectedCategories.category).length} Packages
+                      {filteredPackages.length} Packages
                     </span>
                   </h1>
                 </div>
@@ -257,8 +256,8 @@ const [activeTabs, setActiveTabs] = useState({});
                     </div>
                     <input
                       type="range"
-                      min="5000"
-                      max="50000"
+                      min="100"
+                      max="25799"
                       value={priceRange[1]}
                       onChange={(e) => setPriceRange([priceRange[0], Number.parseInt(e.target.value)])}
                       className="w-full"
@@ -353,9 +352,8 @@ const [activeTabs, setActiveTabs] = useState({});
             {/* Package Listings */}
             <div className="flex-1">
               <div className="space-y-6">
-                {packegesData
-                  .filter((pkg) => pkg.packageCategory === selectedCategories.categoryName)
-                  .map((pkg) => (
+                {filteredPackages.length > 0 ? (
+                  filteredPackages.map((pkg) => (
                     <div key={pkg.id} className="bg-white rounded-lg shadow-sm overflow-hidden">
                       <div className="flex flex-col md:flex-row">
                         {/* Package Image */}
@@ -365,93 +363,89 @@ const [activeTabs, setActiveTabs] = useState({});
                             alt={pkg.headline}
                             className="w-full h-48 md:h-full object-cover"
                           />
-                          {/* {pkg.featured && (
-                            <div className="absolute top-4 left-0 bg-red-500 text-white text-xs px-3 py-1 font-medium">
-                              Featured
-                            </div>
-                          )} */}
                         </div>
 
                         {/* Package Details */}
                         <div className="flex-1 p-4 md:p-6">
                           <div className="flex flex-col md:flex-row justify-between">
                             <div className="flex-1">
-                              <h2 className="text-lg font-semibold text-gray-800 mb-2">{pkg.headline}</h2>
+                              <div className="flex justify-between">
+                                <h3 className="text-md font-semibold text-gray-800 mb-1">{pkg.headline}</h3>
+                                <p className="text-sm text-gray-600 mb-4">{pkg.days}</p>
+                              </div>
+                              
                               <div className="flex items-center text-sm text-[#ce3c3d] font-medium mb-3">
                                 <MapPin className="w-4 h-4 mr-1" />
                                 <span>{pkg.location}</span>
                               </div>
-                              <p className="text-gray-600 text-sm mb-4">{pkg.cityRoute}</p>
+                              <div className="pl-1">
+                                {Array.from({ length: Number(pkg.rating) }).map((_, index) => (
+                                  <Star key={index} className="inline w-4 h-4 text-yellow-400 fill-yellow-400" />
+                                ))}
+                              </div>
+                              <p className="text-gray-600 text-sm mb-4 pl-1">{pkg.cityRoute}</p>
 
                               {/* Amenities */}
                               <div className="space-y-2">
                                 <div className="flex flex-wrap gap-4">
-                                <div onClick={() => setActiveTabs(prev => ({ ...prev, [pkg._id]: 'highlights' }))}>
-                                  <div className="flex justify-center items-center border-1 border-[#ce3c3d] rounded-full h-12 w-12">
-                                    <Sun className="w-6 h-6  text-[#ce3c3d] " />
-                                  </div>
-                                  <div className="text-center">
-                                    <span className="text-[12px]">highlights</span>
-                                  </div>
-                                </div>
-                                <div className="" onClick={() => setActiveTabs(prev => ({ ...prev, [pkg._id]: 'meals' }))}>
-                                 <div className="flex justify-center items-center border-1 border-[#ce3c3d] rounded-full h-12 w-12">
-                                   <Coffee className="w-6 h-6  text-[#ce3c3d] " />
-                                 </div>
-                                 <div className="text-center">
-                                   <span className="text-[12px]">Meals</span>
-                                 </div>
-                                </div>
-
-                                <div className="" onClick={() => setActiveTabs(prev => ({ ...prev, [pkg._id]: 'transfers' }))}>
-                                 <div className="flex justify-center items-center border-1 border-[#ce3c3d] rounded-full h-12 w-12">
-                                   <Car className="w-6 h-6  text-[#ce3c3d] " />
-                                 </div>
-                                 <div className="text-center">
-                                   <span className="text-[12px]">Transfer</span>
-                                 </div>
-                                </div>
-
-                                  <div className="" onClick={() => setActiveTabs(prev => ({ ...prev, [pkg._id]: 'hotels' }))}>
-                                 <div className="flex justify-center items-center border-1 border-[#ce3c3d] rounded-full h-12 w-12">
-                                   <Home className="w-6 h-6  text-[#ce3c3d] " />
-                                 </div>
-                                 <div className="text-center">
-                                   <span className="text-[12px]">Hotel</span>
-                                 </div>
-                                </div>
-                                  <div className="" onClick={() => setActiveTabs(prev => ({ ...prev, [pkg._id]: 'sightseeing' }))}>
-                                 <div className="flex justify-center items-center border-1 border-[#ce3c3d] rounded-full h-12 w-12">
-                                   <Eye className="w-6 h-6  text-[#ce3c3d] " />
-                                 </div>
-                                 <div className="text-center">
-                                   <span className="text-[12px]">Sightseeing</span>
-                                 </div>
-                                </div>
-
-                               </div>
-
-                               {activeTabs[pkg._id] === "highlights" && (
-                                <div dangerouslySetInnerHTML={{ __html: pkg.highlights }} />
-                              )}
-                              {activeTabs[pkg._id] === "meals" && (
-                                <div dangerouslySetInnerHTML={{ __html: pkg.meals }} />
-                              )}
-                              {activeTabs[pkg._id] === "transfers" && (
-                                <div dangerouslySetInnerHTML={{ __html: pkg.transfers }} />
-                              )}
-                              {activeTabs[pkg._id] === "hotels" && (
-                                <div dangerouslySetInnerHTML={{ __html: pkg.hotels }} />
-                              )}
-                              {activeTabs[pkg._id] === "sightseeing" && (
-                                <div dangerouslySetInnerHTML={{ __html: pkg.sightseeing }} />
-                              )}
-                                                              
-
-
                                 
-                                
-                               
+                                  <div onClick={() => setActiveTabs(prev => ({ ...prev, [pkg._id]: 'highlights' }))} >
+                                    <div className="flex justify-center items-center border-1 border-[#ce3c3d] rounded-full h-12 w-12">
+                                      <Sun className="w-6 h-6 text-[#ce3c3d]" />
+                                    </div>
+                                    <div className="text-center">
+                                      <span className="text-[12px]">highlights</span>
+                                    </div>
+                                  </div>
+                                  <div onClick={() => setActiveTabs(prev => ({ ...prev, [pkg._id]: 'meals' }))}>
+                                    <div className="flex justify-center items-center border-1 border-[#ce3c3d] rounded-full h-12 w-12">
+                                      <Coffee className="w-6 h-6 text-[#ce3c3d]" />
+                                    </div>
+                                    <div className="text-center">
+                                      <span className="text-[12px]">Meals</span>
+                                    </div>
+                                  </div>
+                                  <div onClick={() => setActiveTabs(prev => ({ ...prev, [pkg._id]: 'transfers' }))}>
+                                    <div className="flex justify-center items-center border-1 border-[#ce3c3d] rounded-full h-12 w-12">
+                                      <Car className="w-6 h-6 text-[#ce3c3d]" />
+                                    </div>
+                                    <div className="text-center">
+                                      <span className="text-[12px]">Transfer</span>
+                                    </div>
+                                  </div>
+                                  <div onClick={() => setActiveTabs(prev => ({ ...prev, [pkg._id]: 'hotels' }))}>
+                                    <div className="flex justify-center items-center border-1 border-[#ce3c3d] rounded-full h-12 w-12">
+                                      <Home className="w-6 h-6 text-[#ce3c3d]" />
+                                    </div>
+                                    <div className="text-center">
+                                      <span className="text-[12px]">Hotel</span>
+                                    </div>
+                                  </div>
+                                  <div onClick={() => setActiveTabs(prev => ({ ...prev, [pkg._id]: 'sightseeing' }))}>
+                                    <div className="flex justify-center items-center border-1 border-[#ce3c3d] rounded-full h-12 w-12">
+                                      <Eye className="w-6 h-6 text-[#ce3c3d]" />
+                                    </div>
+                                    <div className="text-center">
+                                      <span className="text-[12px]">Sightseeing</span>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                {activeTabs[pkg._id] === "highlights" && (
+                                  <div dangerouslySetInnerHTML={{ __html: pkg.highlights }} />
+                                )}
+                                {activeTabs[pkg._id] === "meals" && (
+                                  <div dangerouslySetInnerHTML={{ __html: pkg.meals }} />
+                                )}
+                                {activeTabs[pkg._id] === "transfers" && (
+                                  <div dangerouslySetInnerHTML={{ __html: pkg.transfers }} />
+                                )}
+                                {activeTabs[pkg._id] === "hotels" && (
+                                  <div dangerouslySetInnerHTML={{ __html: pkg.hotels }} />
+                                )}
+                                {activeTabs[pkg._id] === "sightseeing" && (
+                                  <div dangerouslySetInnerHTML={{ __html: pkg.sightseeing }} />
+                                )}
                               </div>
                             </div>
 
@@ -477,14 +471,19 @@ const [activeTabs, setActiveTabs] = useState({});
                         </div>
                       </div>
                     </div>
-                  ))}
+                  ))
+                ) : (
+                  <div className="bg-white p-8 rounded-lg shadow-sm text-center">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">No packages found</h3>
+                    <p className="text-gray-600">Try adjusting your filters to see more results</p>
+                  </div>
+                )}
               </div>
 
               {/* FAQ Section */}
               <div className="mt-8 bg-white rounded-lg shadow-sm p-6">
                 <h3 className="text-xl font-semibold mb-6 text-[#ce3c3d]">FAQs (Frequently Ask Questions)</h3>
                 <div className="space-y-4" dangerouslySetInnerHTML={{ __html: selectedCategories.subcategoryFAQ }}>
-                  
                 </div>
               </div>
             </div>
