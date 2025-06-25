@@ -126,14 +126,14 @@ export default function HolidayPackages() {
                 
                   <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                   {/* Card Image Section */}
-                  <Link to={  `/packegesdetails/${pkg._id}`}>
+                  <Link to={  `/packegesdetails/${pkg.slug}`}>
                   <div className="relative h-60 overflow-hidden">
                     
                      
                       <div
                         className="h-full bg-cover bg-center"
                         style={{
-                          backgroundImage: `url(${pkg.heroImage})`,
+                          backgroundImage: `url(${pkg.featureImage})`,
                         }}
                       >
                         {/* <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div> */}
@@ -157,20 +157,22 @@ export default function HolidayPackages() {
                       </div>
                       <div className="flex items-center text-gray-600 text-sm">
                         <MapPin className="w-4 h-4 mr-2" />
-                        <span>{pkg.address}</span>
+                        <span>{pkg.location}</span>
                       </div>
                     </div>
 
                     {/* Pricing */}
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center space-x-2">
-                        <span className="text-xl font-bold text-gray-800">{pkg.price}</span>
+                        <span className="text-xl font-bold text-gray-800">{pkg.bestPrice}</span>
                         {pkg.originalPrice && (
-                          <span className="text-sm text-gray-500 line-through">{pkg.originalPrice}</span>
+                          <span className="text-sm text-gray-500 line-through">{pkg.maxPrice}</span>
                         )}
                       </div>
                       <button className="text-gray-600 hover:text-gray-800 font-medium text-sm border border-gray-300 hover:border-gray-400 px-4 py-2 rounded-lg transition-colors">
-                        View More
+                       <Link to={  `/packegesdetails/${pkg.slug}`}>
+                         View More
+                       </Link>
                       </button>
                     </div>
 

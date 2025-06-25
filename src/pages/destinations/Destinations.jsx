@@ -15,7 +15,7 @@ const Blog = () => {
 
 useEffect(()=>{
   destinationsData?.map((item)=>{
-    if(item._id==id){
+    if(item.slug==id){
       setBlogDetails(item)
     }
   })

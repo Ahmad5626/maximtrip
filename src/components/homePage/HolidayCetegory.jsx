@@ -127,13 +127,13 @@ export default function HolidayCategory() {
                
                   <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
                   {/* Card Image Section */}
-                <Link to={`/packeges/${pkg._id}`}>
+                <Link to={`/holiday/${pkg.Slug}`}>
                     <div className={`relative h-54 bg-gradient-to-br `}>
                     {/* Main Content */}
                     <div className="relative h-full">
                       {/* Background Image */}
                       <div
-                        className="absolute inset-0 bg-no-repeat bg-center rounded-lg bg-red-500"
+                        className="absolute inset-0 bg-no-repeat  bg-cover rounded-lg bg-red-500"
                         style={{
                           backgroundImage: `url(${pkg.image})`,
                         }}

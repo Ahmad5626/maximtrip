@@ -102,7 +102,7 @@ export default function PackageDetails() {
   ]
 
 useEffect(() => {
-  setnewdata(packegesData?.filter((item) => item._id === id)[0])
+  setnewdata(packegesData?.filter((item) => item.slug === id)[0])
 })
 
 
@@ -116,7 +116,7 @@ useEffect(() => {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Left Content */}
-           {packegesData.filter((item) => item._id === id).map((item) => (
+           {packegesData.filter((item) => item.slug === id).map((item) => (
               <div className="flex-1">
 
               {/* slider */}
@@ -130,83 +130,11 @@ useEffect(() => {
 
                   {/* Packages Slider */}
                   <div className="relative">
-                    <Swiper
-                      modules={[Navigation, Autoplay]}
-                      spaceBetween={20}
-                      slidesPerView={1}
-                      navigation={{
-                        nextEl: ".packages-swiper-button-next",
-                        prevEl: ".packages-swiper-button-prev",
-                      }}
-                      autoplay={{
-                        delay: 5000,
-                        disableOnInteraction: false,
-                      }}
-                      breakpoints={{
-                        640: {
-                          slidesPerView: 1,
-                          spaceBetween: 20,
-                        },
-                        768: {
-                          slidesPerView: 1,
-                          spaceBetween: 24,
-                        },
-                        1024: {
-                          slidesPerView: 1,
-                          spaceBetween: 24,
-                        },
-                      }}
-                      loop={true}
-                      className="packages-swiper"
-                    >
-                      {item.multipleImages.map((pkg) => (
-                        <SwiperSlide key={pkg.id}>
-
-                          <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                            {/* Card Image Section */}
-                            <div className="relative h-80 overflow-hidden">
-
-
-                              <div
-                                className="h-full bg-cover bg-center"
-                                style={{
-                                  backgroundImage: `url(${pkg})`,
-                                }}
-                              >
-
-                              </div>
-
-                            </div>
-
-
-                          </div>
-
-                        </SwiperSlide>
-                      ))}
-                    </Swiper>
+                   <img src={item.featureImage} className='w-full h-150 object-cover rounded-2xl' ></img>
 
                     {/* Custom Navigation Buttons */}
-                    <div className="packages-swiper-button-prev absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 z-10 bg-white shadow-lg hover:shadow-xl text-gray-700 p-3 rounded-full transition-all duration-300 cursor-pointer group">
-                      <svg
-                        className="w-6 h-6 group-hover:scale-110 transition-transform"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                      </svg>
-                    </div>
-
-                    <div className="packages-swiper-button-next absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 z-10 bg-white shadow-lg hover:shadow-xl text-gray-700 p-3 rounded-full transition-all duration-300 cursor-pointer group">
-                      <svg
-                        className="w-6 h-6 group-hover:scale-110 transition-transform"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
+                  
+                    
                   </div>
                 </div>
 
@@ -249,7 +177,7 @@ useEffect(() => {
                   {activeTab === "overview" && (
                     <div>
                       <p className="text-gray-700 leading-relaxed mb-4">
-                        {item.overview}
+                        <div className="" dangerouslySetInnerHTML={{ __html: item.overview }}></div>
                       </p>
                      
                     </div>

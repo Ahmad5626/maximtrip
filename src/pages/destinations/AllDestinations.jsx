@@ -42,7 +42,7 @@ export default function AllDestinations() {
         {/* destinationsData Slider */}
         <div className="flex space-x-5 space-y-5 flex-wrap ">
           
-            {destinationsData?.map((blog) => (
+            {destinationsData.filter((blog) => blog.status === "Active")?.map((blog) => (
               
                 <div className="w-full md:w-[22%]">
                     <Link to={`/blog/${blog._id}`} key={blog._id}>

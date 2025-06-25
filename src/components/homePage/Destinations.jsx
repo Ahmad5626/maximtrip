@@ -73,9 +73,9 @@ export default function Destinations() {
             loop={true}
             className="destinationsData-swiper"
           >
-            {destinationsData?.map((blog) => (
+            {destinationsData.filter((item) => item.status === "Active")?.map((blog) => (
               <SwiperSlide key={blog._id}>
-                <Link to={`/destination/${blog._id}`}>
+                <Link to={`/destination/${blog.slug}`}>
                   <div className="group cursor-pointer">
                   <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform group-hover:scale-105">
                     {/* Background Image */}

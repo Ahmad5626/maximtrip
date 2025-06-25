@@ -37,7 +37,7 @@ export default function Navbar() {
 
     if (query.trim() && categoryData) {
       const filtered = categoryData
-        .filter((pkg) => pkg.categoryName && pkg.categoryName.toLowerCase().includes(query.toLowerCase()))
+        .filter((pkg) => pkg.Slug && pkg.Slug.toLowerCase().includes(query.toLowerCase()))
         .slice(0, 8) // Limit to 8 results
       setFilteredResults(filtered)
       setShowDropdown(true)
@@ -51,16 +51,16 @@ export default function Navbar() {
     e.preventDefault()
     const query = inputRef.current.value.trim()
     if (query) {
-      navigate(`/search?query=${encodeURIComponent(query)}`)
+      navigate(`/holiday/${encodeURIComponent(query)}`)
       setShowDropdown(false)
     }
   }
 
   const handleResultClick = (pkg) => {
-    setSearchQuery(pkg.categoryName)
+    setSearchQuery(pkg.Slug)
     setShowDropdown(false)
-    // Navigate to package detail or search with this categoryName
-    navigate(`/search?query=${encodeURIComponent(pkg.categoryName)}`)
+    // Navigate to package detail or search with this Slug
+    navigate(`/holiday/${encodeURIComponent(pkg.Slug)}`)
   }
 
   // Close dropdown when clicking outside
@@ -142,7 +142,7 @@ export default function Navbar() {
                 >
                   <div className="flex items-center space-x-3">
                     <Search className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                    <span className="text-sm text-gray-700 truncate">{pkg.categoryName}</span>
+                    <span className="text-sm text-gray-700 truncate">{pkg.Slug}</span>
                   </div>
                 </div>
               ))}
@@ -213,7 +213,7 @@ export default function Navbar() {
                 >
                   <div className="flex items-center space-x-3">
                     <Search className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                    <span className="text-sm text-gray-700 truncate">{pkg.categoryName}</span>
+                    <span className="text-sm text-gray-700 truncate">{pkg.Slug}</span>
                   </div>
                 </div>
               ))}

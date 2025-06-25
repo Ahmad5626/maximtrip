@@ -110,9 +110,9 @@ export default function PopularDestinations() {
             loop={true}
             className="blogData-swiper"
           >
-            {blogData?.map((blog) => (
+            {blogData.filter((blog) => blog.status === "Active")?.map((blog) => (
               <SwiperSlide key={blog._id}>
-                <Link to={`/blog/${blog._id}`}>
+                <Link to={`/blog/${blog.slug}`}>
                   <div className="group cursor-pointer">
                   <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform group-hover:scale-105">
                     {/* Background Image */}
