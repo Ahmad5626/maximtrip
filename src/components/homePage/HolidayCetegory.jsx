@@ -80,7 +80,7 @@ export default function HolidayCategory() {
   return (
   <>
   <Toaster position="top-center"/>
-      <section className="py-16 px-4 bg-gray-50">
+      <section className=" px-4 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="mb-12">
@@ -234,14 +234,14 @@ export default function HolidayCategory() {
                       type="date"
                       name="date"
                       placeholder="Travel Date"
-                      
+                      required
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ce3c3d] focus:border-transparent"
                     />
                   </div>
                   <div>
                     <select
                       name="members"
-                      
+                      required
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ce3c3d] focus:border-transparent bg-white"
                     >
                       <option value="1 Travellers">1 Travellers</option>
@@ -258,7 +258,7 @@ export default function HolidayCategory() {
                   <textarea
                     name="message"
                     placeholder="Message..."
-                   
+                   required
                     rows={4}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ce3c3d] focus:border-transparent resize-none"
                   />

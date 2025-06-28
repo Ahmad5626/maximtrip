@@ -229,12 +229,12 @@ export default function PackagesListing() {
                 )}
               </div>
               <div className="md:w-1/3">
-                <div className="w-full">
-                  <img
+                <div className="w-full h-full" style={{backgroundImage: `url(${selectedCategories.image})`, backgroundSize: "cover", backgroundRepeat: "no-repeat"}} >
+                  {/* <img
                     src={selectedCategories.image || "/placeholder.svg"}
                     alt={selectedCategories.headline}
                     className="object-contain w-full"
-                  />
+                  /> */}
                 </div>
               </div>
             </div>
@@ -539,11 +539,14 @@ export default function PackagesListing() {
                           name="date"
                           placeholder="Travel Date"
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ce3c3d] focus:border-transparent"
+                        
+                          required
                         />
                       </div>
                       <div>
                         <select
                           name="members"
+                          required
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ce3c3d] focus:border-transparent bg-white"
                         >
                           <option value="1 Travellers">1 Travellers</option>
@@ -558,6 +561,7 @@ export default function PackagesListing() {
                       <textarea
                         name="message"
                         placeholder="Message..."
+                        required
                         rows={4}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ce3c3d] focus:border-transparent resize-none"
                       />

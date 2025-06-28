@@ -66,7 +66,7 @@ export default function HeroSection() {
 
   return (
    <>
-     <div className="relative h-screen overflow-hidden">
+     <div className="relative h-screen overflow-hidden ">
       <Swiper
         modules={[Navigation, Pagination, Autoplay, EffectFade]}
         spaceBetween={0}
@@ -94,7 +94,7 @@ export default function HeroSection() {
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
-            <div className="relative h-[90%]">
+            <div className="relative h-[95%] shadow-lg">
               {/* Background Image */}
               <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -158,7 +158,7 @@ export default function HeroSection() {
                         type="text"
                         placeholder="Destination"
                         name="distination"
-                        
+                        required
                         
                         className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-700"
                       />
@@ -169,7 +169,7 @@ export default function HeroSection() {
                         type="date"
                         name="date"
                         placeholder="Date"
-                        
+                        required
                         className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-700"
                       />
                     </div>
@@ -177,7 +177,7 @@ export default function HeroSection() {
                     <div>
                       <select
                         name="members"
-                        
+                        required
                         className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-700 appearance-none bg-white"
                       >
                       <option value="Select Travellers">Select Travellers</option>
@@ -194,7 +194,7 @@ export default function HeroSection() {
                         type="text"
                         name="fullName"
                         placeholder="Full Name"
-                       
+                       required
                         className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-700"
                       />
                     </div>
@@ -204,7 +204,7 @@ export default function HeroSection() {
                         type="tel"
                         name="mobile"
                         placeholder="Enter Mobile no."
-                       
+                       required
                         className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-700"
                       />
                     </div>
@@ -214,7 +214,7 @@ export default function HeroSection() {
                         type="email"
                         name="email"
                         placeholder="Email Address"
-                       
+                       required
                         className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-700"
                       />
                     </div>

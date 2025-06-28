@@ -277,7 +277,7 @@ useEffect(() => {
                       <input
                         type="text"
                         placeholder="Destination"
-                        
+                        required
                         name="packageName"
                         value={newdata?.headline}
                        
@@ -289,7 +289,7 @@ useEffect(() => {
                         type="text"
                         placeholder="Destination"
                         name="distination"
-                        
+                        required
                         
                         className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-700"
                       />
@@ -300,7 +300,7 @@ useEffect(() => {
                         type="date"
                         name="date"
                         placeholder="Date"
-                        
+                        required
                         className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-700"
                       />
                     </div>
@@ -308,7 +308,7 @@ useEffect(() => {
                     <div>
                       <select
                         name="members"
-                        
+                        required
                         className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-700 appearance-none bg-white"
                       >
                       <option value="Select Travellers">Select Travellers</option>
@@ -325,7 +325,7 @@ useEffect(() => {
                         type="text"
                         name="fullName"
                         placeholder="Full Name"
-                       
+                       required
                         className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-700"
                       />
                     </div>
@@ -335,7 +335,7 @@ useEffect(() => {
                         type="tel"
                         name="mobile"
                         placeholder="Enter Mobile no."
-                       
+                       required
                         className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-700"
                       />
                     </div>
@@ -345,7 +345,7 @@ useEffect(() => {
                         type="email"
                         name="email"
                         placeholder="Email Address"
-                       
+                       required
                         className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-700"
                       />
                     </div>
