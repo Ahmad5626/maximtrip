@@ -14,7 +14,7 @@ import { AuthContext } from "@/context"
 import { Link } from "react-router-dom"
 
 export default function HeroSection() {
-  const {HandleSubmitEnquiry,isPopupOpen2,setIsPopupOpen2,setPopupHeadline,popupHeadline}=useContext(AuthContext)
+  const {HandleSubmitEnquiry,isPopupOpen2,setIsPopupOpen2,setPopupHeadline,popupHeadline,packegesData}=useContext(AuthContext)
 
   const openPopup = (headline) => {
   setIsPopupOpen2(true)
@@ -92,14 +92,14 @@ export default function HeroSection() {
         loop={true}
         className="h-full"
       >
-        {slides.map((slide) => (
-          <SwiperSlide key={slide.id}>
+        {packegesData.filter((item) => item.showInSlider === "Yes").map((slide) => (
+          <SwiperSlide key={slide._id}>
             <div className="relative h-[95%] shadow-lg">
               {/* Background Image */}
               <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                 style={{
-                  backgroundImage: `url(${slide.image})`,
+                  backgroundImage: `url(${slide.featureImage})`,
                 }}
               >
                 {/* Overlay */}
@@ -110,20 +110,20 @@ export default function HeroSection() {
               <div className="relative z-10 h-[90vh] md:h-[85vh] flex items-end justify-center">
                 <div className="md:text-center text-white px-4 md:max-w-4xl mx-auto">
                   <h1 className="text-4xl md:text-6xl lg:text-4xl font-bold mb-4 leading-tight animate-fade-in">
-                    {slide.title}
+                    {slide.headline}
                   </h1>
                   <p className="text-xl md:text-2xl lg:text-2xl mb-6 font-medium animate-fade-in-delay">
-                    {slide.duration}
+                    {slide.days}
                   </p>
                   <div className="mb-8 animate-fade-in-delay-2">
-                    <span className="text-2xl md:text-xl font-bold mr-4">{slide.currentPrice}</span>
-                    <span className="text-lg md:text-xl line-through text-gray-300">{slide.originalPrice}</span>
+                    <span className="text-2xl md:text-xl font-bold mr-4">{slide.bestPrice}</span>
+                    <span className="text-lg md:text-xl line-through text-gray-300">{slide.maxPrice}</span>
                   </div>
                   <button
                     className="hidden md:inline bg-[#ce3c3d] hover:bg-white text-white hover:text-[#ce3c3d] font-bold py-3 px-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-delay-3"
                     
                     
-                    onClick={() => openPopup(slide.title)}
+                    onClick={() => openPopup(slide.headline)}
                   >
                     CONNECT WITH AN EXPERT
                   </button>

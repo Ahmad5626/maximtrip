@@ -27,6 +27,17 @@ export default function AuthProvider({ children }) {
     
     
     try {
+      const data =await fetch(`${baseUrl}/enquiry/send-email`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }).then((res) => { 
+       
+        toast.success("Message sent successfully");
+      })
+    
       await createEnquiry(formData);
       toast.success("Enquiry submitted successfully");
       e.target.reset();

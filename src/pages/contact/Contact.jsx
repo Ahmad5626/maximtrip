@@ -4,7 +4,9 @@ import { useState } from "react"
 import { Phone, Mail, MapPin } from "lucide-react"
 import Footer from "@/footer/Footer"
 import Navbar from "@/components/navbar/Navbar"
-
+import { baseUrl } from "@/utils/constant"
+import axios from "axios"
+import { toast, Toaster } from "sonner"
 export default function ContactPage() {
   const [formData, setState] = useState({
     name: "",
@@ -19,14 +21,43 @@ export default function ContactPage() {
     setState((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log("Form submitted:", formData)
-    // Add your form submission logic here
-  }
+  // const handleSubmit = (e) => {
+  //   e.preventDefault()
+  //   console.log("Form submitted:", formData)
+  //   // Add your form submission logic here
+  // }
+
+    const handleSend = async (e) => {
+      e.preventDefault()
+
+    try {
+      const data =await fetch(`${baseUrl}/contact/send-email`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }).then((res) => { 
+        if (res.ok) {
+          setState({
+            name: "",
+            email: "",
+            phone: "",
+            subject: "",
+            message: "",
+          })
+        }
+        toast.success("Message sent successfully");
+      })
+    } catch (error) {
+      console.log(error);
+      
+    }
+  };
 
   return (
   <>
+  <Toaster  position="top-center"/>
   <Navbar/>
       <div className="max-w-7xl mx-auto p-4 md:p-6 lg:p-8">
       <div className="flex flex-col lg:flex-row gap-8">
@@ -54,7 +85,7 @@ export default function ContactPage() {
                 <MapPin className="h-6 w-6 text-[#ce3c3d] mr-3 flex-shrink-0" />
                 <div>
                   <h3 className="font-medium text-gray-700">Address</h3>
-                  <p className="text-gray-600">Dalgate near Dal Gate,Srinagar,Jammu & Kashmir,India,190008</p>
+                  <p className="text-gray-600">Alluchi Bagh Sector A Near Khadi Mill Road,,Srinagar,Jammu & Kashmir,India,190008</p>
                 </div>
               </div>
             </div>
@@ -64,8 +95,9 @@ export default function ContactPage() {
 
           {/* Map Container */}
           <div className="bg-white rounded-lg shadow-md overflow-hidden">
+          
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13221.687363041061!2d74.79297600000001!3d34.058699!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e18ff039325501%3A0xbec236c724c04d17!2sMaximTrip!5e0!3m2!1sen!2sin!4v1749835592080!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.4247578663712!2d74.7972289!3d34.0586242!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e18f92f49b4379%3A0xb4d1c777e9a3ae02!2sMaximTrip!5e0!3m2!1sen!2sin!4v1751278308176!5m2!1sen!2sin"
               width="100%"
               height="300"
               style={{ border: 0 }}
@@ -86,7 +118,7 @@ export default function ContactPage() {
         {/* Contact Form */}
         <div className="lg:w-2/3">
           <div className="bg-white rounded-lg shadow-md p-6">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSend} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
@@ -111,7 +143,7 @@ export default function ContactPage() {
                     type="email"
                     id="email"
                     name="email"
-                    value={formData.email}
+                    value={formData.from}
                     onChange={handleChange}
                     required
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ce3c3d]"

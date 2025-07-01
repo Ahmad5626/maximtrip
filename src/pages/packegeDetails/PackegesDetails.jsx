@@ -109,28 +109,25 @@ useEffect(() => {
 
   return (
     <>
-    
+     <ScrolltoTop />
       <Toaster position="top-center" />
       <Navbar />
       <div className="bg-gray-50 min-h-screen py-8 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row gap-8">
+          <div className="flex flex-col lg:flex-row gap-8 ">
             {/* Left Content */}
            {packegesData.filter((item) => item.slug === id).map((item) => (
               <div className="flex-1">
 
               {/* slider */}
               <section className=" px-4 bg-white">
-                <div className="max-w-[700px]   bg-red-400 ">
+                <div className="max-w-[900px]   ">
                   {/* Section Header */}
-                  <div className="mb-12">
-
-
-                  </div>
+                
 
                   {/* Packages Slider */}
-                  <div className="relative">
-                   <img src={item.featureImage} className='w-full h-150 object-cover rounded-2xl' ></img>
+                  <div className="">
+                   <img src={item.featureImage} className='w-full h-100 object-cover rounded-2xl m-0' ></img>
 
                     {/* Custom Navigation Buttons */}
                   

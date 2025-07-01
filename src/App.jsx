@@ -11,6 +11,7 @@ import NewPage from './pages/Page/NewPage'
 import Search from './pages/search/Search'
 import AllDestinations from './pages/destinations/AllDestinations'
 import Destinations from './pages/destinations/Destinations'
+import TermsOfUse from './pages/termsOfUse/TermsOfUse'
 
 
 function App() {
@@ -29,6 +30,8 @@ function App() {
       <Route path="/search" element={<Search />} />
       <Route path="/alldestination" element={<AllDestinations />} />
       <Route path="/destination/:id" element={<Destinations />} />
+      <Route path="/terms-of-use" element={<TermsOfUse />} />
+
     
       
     </Routes>
