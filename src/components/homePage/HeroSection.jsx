@@ -67,72 +67,70 @@ export default function HeroSection() {
   return (
    <>
      <div className="relative h-screen overflow-hidden ">
-      <Swiper
-        modules={[Navigation, Pagination, Autoplay, EffectFade]}
-        spaceBetween={0}
-        slidesPerView={1}
-        navigation={{
-          nextEl: ".swiper-button-next-custom",
-          prevEl: ".swiper-button-prev-custom",
-        }}
-        pagination={{
-          el: ".swiper-pagination-custom",
-          clickable: true,
-          bulletClass: "swiper-pagination-bullet-custom",
-          bulletActiveClass: "swiper-pagination-bullet-active-custom",
-        }}
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-        }}
-        effect="fade"
-        fadeEffect={{
-          crossFade: true,
-        }}
-        loop={true}
-        className="h-full"
-      >
-        {packegesData.filter((item) => item.showInSlider === "Yes").map((slide) => (
-          <SwiperSlide key={slide._id}>
-            <div className="relative h-[95%] shadow-lg">
-              {/* Background Image */}
-              <div
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                style={{
-                  backgroundImage: `url(${slide.featureImage})`,
-                }}
-              >
-                {/* Overlay */}
-                <div className="absolute  w-full h-full  bg-opacity-10"></div>
-              </div>
+  <Swiper
+  modules={[Navigation, Pagination, Autoplay, EffectFade]}
+  spaceBetween={0}
+  slidesPerView={1}
+  navigation={{
+    nextEl: ".swiper-button-next-custom",
+    prevEl: ".swiper-button-prev-custom",
+  }}
+  pagination={{
+    el: ".swiper-pagination-custom",
+    clickable: true,
+    bulletClass: "swiper-pagination-bullet-custom",
+    bulletActiveClass: "swiper-pagination-bullet-active-custom",
+  }}
+  autoplay={{
+    delay: 5000,
+    disableOnInteraction: false,
+  }}
+  effect="fade"
+  fadeEffect={{
+    crossFade: true,
+  }}
+ 
+  className="h-full relative z-10"
+>
+  {packegesData
+    .filter((item) => item.showInSlider === "Yes")
+    .map((slide) => (
+      <SwiperSlide key={slide._id} className="relative z-10">
+        <div className="relative h-[95%] shadow-lg z-10">
+          {/* Background Image */}
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none z-0"
+            style={{
+              backgroundImage: `url(${slide.featureImage})`,
+            }}
+          ></div>
 
-              {/* Content */}
-              <div className="relative z-10 h-[90vh] md:h-[85vh] flex items-end justify-center">
-                <div className="md:text-center text-white px-4 md:max-w-4xl mx-auto">
-                  <h1 className="text-4xl md:text-6xl lg:text-4xl font-bold mb-4 leading-tight animate-fade-in">
-                    {slide.headline}
-                  </h1>
-                  <p className="text-xl md:text-2xl lg:text-2xl mb-6 font-medium animate-fade-in-delay">
-                    {slide.days}
-                  </p>
-                  <div className="mb-8 animate-fade-in-delay-2">
-                    <span className="text-2xl md:text-xl font-bold mr-4">{slide.bestPrice}</span>
-                    <span className="text-lg md:text-xl line-through text-gray-300">{slide.maxPrice}</span>
-                  </div>
-                  <button
-                    className="hidden md:inline bg-[#ce3c3d] hover:bg-white text-white hover:text-[#ce3c3d] font-bold py-3 px-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-delay-3"
-                    
-                    
-                    onClick={() => openPopup(slide.headline)}
-                  >
-                    CONNECT WITH AN EXPERT
-                  </button>
-                </div>
+          {/* Content */}
+          <div className="relative z-20 h-[90vh] md:h-[85vh] flex items-end justify-center">
+            <div className="md:text-center text-white px-4 md:max-w-4xl mx-auto">
+              <h1 className="text-2xl md:text-6xl lg:text-4xl font-bold mb-4 leading-tight animate-fade-in">
+                {slide.headline}
+              </h1>
+              <p className="text-xl md:text-2xl lg:text-2xl mb-6 font-medium animate-fade-in-delay border-t border-b py-1 border-dotted border-gray-300">
+                {slide.days}
+              </p>
+              <div className="mb-8 animate-fade-in-delay-2">
+                <span className="text-2xl md:text-xl font-bold mr-4">{slide.bestPrice}</span>
+                <span className="text-lg md:text-xl line-through text-gray-300">{slide.maxPrice}</span>
               </div>
+              <button
+                onClick={() => openPopup(slide.headline)}
+                className="hidden md:inline bg-[#ce3c3d] hover:bg-white text-white hover:text-[#ce3c3d] font-bold py-3 px-6 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-delay-3 relative z-30"
+              >
+                CONNECT WITH AN EXPERT
+              </button>
             </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+          </div>
+        </div>
+      </SwiperSlide>
+    ))}
+</Swiper>
+
 
        {/* Popup Modal */}
       {isPopupOpen2 && (
@@ -341,7 +339,7 @@ export default function HeroSection() {
       </div>
       <div className="call-now text-[white] bg-[#ce3c3d] flex items-center gap-2 text-[10px] border border-[#ce3c3d] py-2 px-4 "  onClick={() => openPopup()}>
       <Phone className="w-3 h-3" />
-        Connect with export
+        Connect with expert
       </div>
 
       <div className="call-now text-[#ce3c3d] flex items-center gap-2 text-[12px] border border-[#ce3c3d] py-2 px-4 rounded-br-xl">

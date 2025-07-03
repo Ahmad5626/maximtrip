@@ -246,10 +246,8 @@ useEffect(() => {
                   {activeTab === "terms" && (
                     <div>
                       <h3 className="text-lg font-semibold text-gray-800 mb-4">Terms & Conditions</h3>
-                      <div className="space-y-3 text-gray-700 text-sm">
-                        {item.termsAndConditions?.map((term, index) => (
-                          <p key={index}>{term}</p>
-                        ))}
+                      <div className="space-y-3 text-gray-700 text-sm"  dangerouslySetInnerHTML={{ __html: item.termsAndConditions }}>
+                        
                       </div>
                     </div>
                   )}

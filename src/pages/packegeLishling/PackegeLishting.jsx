@@ -363,22 +363,24 @@ export default function PackagesListing() {
                             alt={pkg.headline}
                             className="w-full h-48 md:h-full object-cover"
                           />
+                          
                         </div>
+                        
 
                         {/* Package Details */}
                         <div className="flex-1 p-4 md:p-6">
                           <div className="flex flex-col md:flex-row justify-between">
                             <div className="flex-1">
                               <div className="flex justify-between">
-                                <h3 className="text-md font-semibold text-gray-800 mb-1">{pkg.headline}</h3>
+                                <h3 className="text-md font-semibold text-gray-800 ">{pkg.headline}</h3>
                                 <p className="text-sm text-gray-600 mb-4">{pkg.days}</p>
                               </div>
                               
-                              <div className="flex items-center text-sm text-[#ce3c3d] font-medium mb-3">
+                              <div className="flex items-center text-sm text-[#ce3c3d] font-medium my-1 border-t border-gray-300 pt-2">
                                 <MapPin className="w-4 h-4 mr-1" />
                                 <span>{pkg.location}</span>
                               </div>
-                              <div className="pl-1">
+                              <div className="pl-1 py-2 border-b border-t border-gray-300">
                                 {Array.from({ length: Number(pkg.rating) }).map((_, index) => (
                                   <Star key={index} className="inline w-4 h-4 text-yellow-400 fill-yellow-400" />
                                 ))}
@@ -431,21 +433,7 @@ export default function PackagesListing() {
                                   </div>
                                 </div>
 
-                                {activeTabs[pkg._id] === "highlights" && (
-                                  <div dangerouslySetInnerHTML={{ __html: pkg.highlights }} />
-                                )}
-                                {activeTabs[pkg._id] === "meals" && (
-                                  <div dangerouslySetInnerHTML={{ __html: pkg.meals }} />
-                                )}
-                                {activeTabs[pkg._id] === "transfers" && (
-                                  <div dangerouslySetInnerHTML={{ __html: pkg.transfers }} />
-                                )}
-                                {activeTabs[pkg._id] === "hotels" && (
-                                  <div dangerouslySetInnerHTML={{ __html: pkg.hotels }} />
-                                )}
-                                {activeTabs[pkg._id] === "sightseeing" && (
-                                  <div dangerouslySetInnerHTML={{ __html: pkg.sightseeing }} />
-                                )}
+                             
                               </div>
                             </div>
 
@@ -469,6 +457,73 @@ export default function PackagesListing() {
                             </div>
                           </div>
                         </div>
+                      </div>
+                      <div className="p-4">
+                           {activeTabs[pkg._id] === "highlights" && (
+                                   <>
+                                    <div className="flex gap-2 items-center">
+                                    <div className="">
+                                      <Sun className="w-4 h-4 text-[#ce3c3d]" />
+                                    </div>
+                                    <div className="">
+                                      <span className="text-[12px]">highlights</span>
+                                    </div>
+                                  </div>
+                                  <div dangerouslySetInnerHTML={{ __html: pkg.highlights }} />
+                                   </>
+                                )}
+                                {activeTabs[pkg._id] === "meals" && (
+                                <>
+                                    <div className="flex gap-2 items-center">
+                                    <div className="">
+                                      <Coffee className="w-4 h-4 text-[#ce3c3d]" />
+                                    </div>
+                                    <div className="">
+                                      <span className="text-[12px]">Meals</span>
+                                    </div>
+                                  </div>
+                                  <div dangerouslySetInnerHTML={{ __html: pkg.meals }} />
+                                </>
+                                )}
+                                {activeTabs[pkg._id] === "transfers" && (
+                                 <>
+                                    <div className="flex gap-2 items-center">
+                                    <div className="">
+                                      <Car className="w-4 h-4 text-[#ce3c3d]" />
+                                    </div>
+                                    <div className="">
+                                      <span className="text-[12px]">Transfer</span>
+                                    </div>
+                                  </div>
+                                  <div dangerouslySetInnerHTML={{ __html: pkg.transfer }} />
+                                 </>
+                                )}
+                                {activeTabs[pkg._id] === "hotels" && (
+                                   <>
+                                    <div className="flex gap-2 items-center">
+                                    <div className="">
+                                      <Home className="w-4 h-4 text-[#ce3c3d]" />
+                                    </div>
+                                    <div className="">
+                                      <span className="text-[12px]">Hotel</span>
+                                    </div>
+                                  </div>
+                                  <div dangerouslySetInnerHTML={{ __html: pkg.hotel }} />
+                                   </>
+                                )}
+                                {activeTabs[pkg._id] === "sightseeing" && (
+                                   <>
+                                    <div className="flex gap-2 items-center">
+                                    <div className="">
+                                      <Eye className="w-4 h-4 text-[#ce3c3d]" />
+                                    </div>
+                                    <div className="">
+                                      <span className="text-[12px]">Sightseeing</span>
+                                    </div>
+                                  </div>
+                                  <div dangerouslySetInnerHTML={{ __html: pkg.sightseeing }} />
+                                   </>
+                                )}
                       </div>
                     </div>
                   ))

@@ -143,14 +143,14 @@ export default function HolidayPackages() {
                   </Link>
 
                   {/* Card Content */}
-                  <div className="p-4">
+                  <div className="">
                     {/* Package Title */}
-                    <h4 className="text-gray-800 font-semibold text-sm mb-0 line-clamp-2 min-h-[3.5rem]">
+                    <h4 className="text-gray-800 font-semibold text-sm mb-0 line-clamp-2 min-h-[2.5rem] pt-2 pl-3">
                       {pkg.headline}
                     </h4>
 
                     {/* Package Details */}
-                    <div className="space-y-2 mb-4">
+                    <div className="space-y-2 mb-4 pl-3">
                       <div className="flex items-center text-gray-600 text-sm">
                         <Clock className="w-4 h-4 mr-2" />
                         <span>{pkg.days}</span>
@@ -163,13 +163,13 @@ export default function HolidayPackages() {
 
                     {/* Pricing */}
                     <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center space-x-2">
-                        <span className="text-xl font-bold text-gray-800">{pkg.bestPrice}</span>
-                        {pkg.originalPrice && (
-                          <span className="text-sm text-gray-500 line-through">{pkg.maxPrice}</span>
-                        )}
+                      <div className="block items-center space-x-2 border-1 border-[#ce3c3d]   w-1/2 px-4 py-2">
+                        <span className=" text-black hover:text-gray-800 px-4 ">Rs.{pkg.bestPrice}</span>
+                        {/* {pkg.originalPrice && (
+                          <span className="text-sm text-gray-500 line-through">{pkg.originalPrice}</span>
+                        )} */}
                       </div>
-                      <button className="text-gray-600 hover:text-gray-800 font-medium text-sm border border-gray-300 hover:border-gray-400 px-4 py-2 rounded-lg transition-colors">
+                      <button className="block w-1/2 text-gray-600 hover:text-gray-800  border border-[#ce3c3d] hover:border-gray-400 px-4 py-2  transition-colors">
                        <Link to={  `/packegesdetails/${pkg.slug}`}>
                          View More
                        </Link>
@@ -178,7 +178,7 @@ export default function HolidayPackages() {
 
                     {/* Action Buttons */}
                     <div className="flex items-center space-x-2">
-                      <div className="flex-shrink-0 w-8 h-8 border-2 border-[#ce3c3d] rounded-lg flex items-center justify-center">
+                      <div className="flex-shrink-0 w-9 h-9 border-2 border-[#ce3c3d] rounded-bl-2xl  flex items-center justify-center">
                         <Phone className="w-5 h-5 text-[#ce3c3d]" />
                       </div>
                       <button

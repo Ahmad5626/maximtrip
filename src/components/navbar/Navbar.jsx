@@ -101,15 +101,15 @@ export default function Navbar() {
             >
               <TypeAnimation
                 sequence={[
-                  'Search "Kashmir Dream Horizons"',
+                  'Search "Kashmir Tour Packages"',
                   1000,
-                  'Search "Kashmir Treasures of Nature Tour"',
+                  'Search "Kashmir Honeymoon Packages"',
                   1000,
-                  'Search "Kashmir Royal Experience "',
+                  'Search "Kashmir Family Tour Packages "',
                   1000,
-                  'Search "Kerala Backwaters"',
+                  'Search "Leh Ladakh Tour Packages"',
                   1000,
-                  'Search "Himachal Highlights "',
+                  'Search "Kashmir Group Tour Packages "',
                 ]}
                 wrapper="span"
                 speed={50}
