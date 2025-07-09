@@ -1,6 +1,6 @@
 // import { Home } from 'lucide-react'
 import { useState } from 'react'
-import { Link, Route, Routes } from 'react-router-dom'
+import { Link, Navigate, Route, Routes } from 'react-router-dom'
 import Home from './pages/home/Home'
 import PackegesLishting from './pages/packegeLishling/PackegeLishting'
 import PackageDetails from './pages/packegeDetails/PackegesDetails'
@@ -20,7 +20,8 @@ function App() {
   return (
     <>
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route index element={<Navigate to="/holidays" />} />
+      <Route path="/holidays" element={<Home />} />
       <Route path="/holiday/:id" element={<PackegesLishting />} />
       <Route path="/packegesdetails/:id" element={<PackageDetails />} />
       <Route path="/blog/:id" element={<Blog />} />

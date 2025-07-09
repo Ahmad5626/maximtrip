@@ -3,7 +3,7 @@ import ScrolltoTop from '@/components/ScrolltoTop'
 import { AuthContext } from '@/context'
 import Footer from '@/footer/Footer'
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const NewPage = () => {
     const {pageData}=useContext(AuthContext)
@@ -11,12 +11,16 @@ const NewPage = () => {
 const slug=useParams()
     
     console.log(slug.slug);
+
+    const navigate=useNavigate()
     
     useEffect(()=>{
-      pageData?.map((item)=>{
-        if(item.slug==slug.slug){
-          setPageDetails(item)
-        }
+      pageData?.filter((item)=>{
+        if(item.slug !== slug.slug){
+          navigate('/')
+          return
+        } 
+        setPageDetails(item)
       })
     })
     

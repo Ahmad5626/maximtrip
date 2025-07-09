@@ -45,12 +45,12 @@ export default function PackagesListing() {
   const [activeTabs, setActiveTabs] = useState({})
 
   const durations = [
-    { label: "More 4 Nights 5 Days", count: 1 },
-    { label: "More 2 Nights 3 Days", count: 1 },
-    { label: "More 3 Nights 4 Days", count: 1 },
-    { label: "More 6 Nights 7 Days", count: 4 },
-    { label: "More 7 Nights 8 Days", count: 3 },
-    { label: "More 5 Nights 6 Days", count: 2 },
+    { label: "More 4 Nights 5 Days", value: "5 Days / 4 Nights" },
+    { label: "More 2 Nights 3 Days",value: "3 Days / 2 Nights" },
+    { label: "More 3 Nights 4 Days",value: "4 Days / 3 Nights" },
+    { label: "More 6 Nights 7 Days",value: "7 Days / 6 Nights" },
+    { label: "More 7 Nights 8 Days",value: "8 Days / 7 Nights" },
+    { label: "More 5 Nights 6 Days" ,value: "6 Days / 5 Nights" },
   ]
 
   const starRatings = [
@@ -137,7 +137,7 @@ export default function PackagesListing() {
     setIsPopupOpen(false)
     setPopupHeadline("")
   }
-
+console.table(packegesData)
   // Filter packages based on selected filters
   const filteredPackages = packegesData
     .filter((pkg) => pkg.packageCategory === selectedCategories.categoryName)
@@ -149,9 +149,7 @@ export default function PackagesListing() {
       
       // Duration filter
       if (selectedDurations.length > 0) {
-        const matchesDuration = selectedDurations.some(duration => 
-          pkg.days && pkg.days.includes(duration.split(" ")[1])
-        )
+        const matchesDuration = selectedDurations.includes(pkg.days)
         if (!matchesDuration) return false
       }
       
@@ -274,12 +272,12 @@ export default function PackagesListing() {
                       <label key={duration.label} className="flex items-center">
                         <input
                           type="checkbox"
-                          checked={selectedDurations.includes(duration.label)}
-                          onChange={() => toggleDuration(duration.label)}
+                          checked={selectedDurations.includes(duration.value)}
+                          onChange={() => toggleDuration(duration.value)}
                           className="mr-2"
                         />
                         <span className="text-sm">
-                          {duration.label} ({duration.count})
+                          {duration.label} 
                         </span>
                       </label>
                     ))}
