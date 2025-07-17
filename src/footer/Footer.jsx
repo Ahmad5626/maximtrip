@@ -7,7 +7,7 @@ export default function Footer() {
     {
       name: "Facebook",
       icon: Facebook,
-      href: "#",
+      href: "https://www.facebook.com/profile.php?id=61578174454251 ",
       bgColor: "bg-blue-600 hover:bg-blue-700",
     },
     {
@@ -19,7 +19,7 @@ export default function Footer() {
     {
       name: "Instagram",
       icon: Instagram,
-      href: "#",
+      href: "https://www.instagram.com/maximtrip_ak",
       bgColor: "bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600",
     },
     {
